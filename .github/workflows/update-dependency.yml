@@ -62,7 +62,7 @@ jobs:
       - name: Create Summary
         run: |
           echo "### 🔄 Dependency Update Summary" >> $GITHUB_STEP_SUMMARY
-          echo "* **Repository**: <a href=\"https://github.com/${{ github.repository }}\" target=\"_blank\">${{ github.repository }}</a>" >> $GITHUB_STEP_SUMMARY
+          echo "* **Repository**: <a href='https://github.com/${{ github.repository }}' target='_blank'>${{ github.repository }}</a>" >> $GITHUB_STEP_SUMMARY
           echo "* **Status**: ✅ Dependency update checked/run successfully" >> $GITHUB_STEP_SUMMARY
           echo "* **Changes Pushed**: \`${{ steps.git-push.outputs.has_changes }}\`" >> $GITHUB_STEP_SUMMARY
 
@@ -80,8 +80,8 @@ jobs:
             https://api.github.com/repos/keshavsoft/pattern-collector-anyjs-pull-lines/dispatches \
             -d '{"event_type":"dependency-updated"}')
           if [ "$RESPONSE1" = "204" ]; then
-            echo "* **<a href=\"https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines\" target=\"_blank\">pattern-collector-anyjs-pull-lines</a>**: ✅ Dispatched successfully (HTTP 204)" >> $GITHUB_STEP_SUMMARY
+            echo "* **<a href='https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines' target='_blank'>pattern-collector-anyjs-pull-lines</a>**: ✅ Dispatched successfully (HTTP 204)" >> $GITHUB_STEP_SUMMARY
           else
-            echo "* **<a href=\"https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines\" target=\"_blank\">pattern-collector-anyjs-pull-lines</a>**: ❌ Failed to dispatch (HTTP $RESPONSE1)" >> $GITHUB_STEP_SUMMARY
+            echo "* **<a href='https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines' target='_blank'>pattern-collector-anyjs-pull-lines</a>**: ❌ Failed to dispatch (HTTP $RESPONSE1)" >> $GITHUB_STEP_SUMMARY
             cat resp1.json >> $GITHUB_STEP_SUMMARY
           fi
