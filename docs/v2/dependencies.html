@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dependency Explorer | pattern-collector-anyjs-pull-lines</title>
+   <title>Dependency Explorer | pattern-collector-anyjs-pull-lines-consumption</title>
    
    <!-- Google Fonts -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -447,7 +447,7 @@
                <!-- Level 0: Root -->
                <div class="tree-level">
                   <div class="node-card root-node selected" id="node-root" onclick="selectPackage('root')">
-                     <div class="node-title">pattern-collector-anyjs-pull-lines</div>
+                     <div class="node-title">pattern-collector-anyjs-pull-lines-consumption</div>
                      <span class="node-version">v1.5.2</span>
                   </div>
                </div>
@@ -485,8 +485,8 @@
          <!-- Right Side: Details Card -->
          <div class="detail-card">
             <div class="detail-header">
-               <div class="detail-name" id="detail-name">pattern-collector-anyjs-pull-lines</div>
-               <div class="detail-desc" id="detail-desc">pull lines from content using supplied regex</div>
+               <div class="detail-name" id="detail-name">pattern-collector-anyjs-pull-lines-consumption</div>
+               <div class="detail-desc" id="detail-desc">A modular ES module to scan target source files and pull lines matching route consumption declarations.</div>
                <div class="detail-tags" id="detail-tags">
                   <span class="tag">pattern</span>
                   <span class="tag">regex</span>
@@ -508,20 +508,20 @@
 
                <div class="meta-item">
                   <span class="meta-label">Package Entry Point</span>
-                  <span class="meta-value" style="font-family: 'Fira Code', monospace;" id="detail-entry">import pullLines from 'pattern-collector-anyjs-pull-lines'</span>
+                  <span class="meta-value" style="font-family: 'Fira Code', monospace;" id="detail-entry">import pullLines from 'pattern-collector-anyjs-pull-lines-consumption'</span>
                </div>
 
                <div class="meta-item">
                   <span class="meta-label">GitHub Repository</span>
                   <span class="meta-value" id="detail-repo">
-                     <a href="https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines" target="_blank" id="detail-repo-link">github.com/keshavsoft/pattern-collector-anyjs-pull-lines</a>
+                     <a href="https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption" target="_blank" id="detail-repo-link">github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption</a>
                   </span>
                </div>
 
                <div class="meta-item">
                   <span class="meta-label">How to Install</span>
                   <div class="code-box">
-                     <span id="detail-install">npm install pattern-collector-anyjs-pull-lines</span>
+                     <span id="detail-install">npm install pattern-collector-anyjs-pull-lines-consumption</span>
                   </div>
                </div>
             </div>
@@ -537,20 +537,20 @@
       // Full database of packages in the dependency chain
       const packageDb = {
          'root': {
-            name: 'pattern-collector-anyjs-pull-lines',
+            name: 'pattern-collector-anyjs-pull-lines-consumption',
             version: '1.5.2',
-            desc: 'pull lines from content using supplied regex. It exposes the main API function that combines import and consumption pattern extractions.',
+            desc: 'A modular ES module to scan target source files and pull lines matching route consumption declarations.. It exposes the main API function that combines import and consumption pattern extractions.',
             tags: ['pattern', 'regex', 'parser', 'import', 'analyzer', 'esm', 'extractor'],
             scope: 'Root Project (This Repository)',
-            entry: 'import pullLines from \'pattern-collector-anyjs-pull-lines\'',
-            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines',
-            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines',
-            install: 'npm install pattern-collector-anyjs-pull-lines',
+            entry: 'import pullLines from \'pattern-collector-anyjs-pull-lines-consumption\'',
+            repo: 'https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption',
+            repoName: 'github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption',
+            install: 'npm install pattern-collector-anyjs-pull-lines-consumption',
             connections: ['extract']
          },
          'extract': {
             name: 'pattern-collector-anyjs-extract',
-            version: 'v1.2.2',
+            version: 'v1.2.1',
             desc: 'A high-performance pattern collector and ESM import statement analyzer. It queries all matches and maps through them to extract structured captures.',
             tags: ['pattern', 'regex', 'parser', 'esm', 'extractor'],
             scope: 'Direct Dependency (1st level)',

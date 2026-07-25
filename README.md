@@ -1,29 +1,27 @@
-# pattern-collector-anyjs-pull-lines 🔍
+# pattern-collector-anyjs-pull-lines-consumption 🔍
 
-> **A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches using custom regular expressions.**
+> **A powerful, configurable tool to scan JavaScript/ESM files and pull structured line matches matching route consumption declarations.**
 
-[![npm version](https://img.shields.io/npm/v/pattern-collector-anyjs-pull-lines.svg?style=flat-square&color=38bdf8)](https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines)
-[![license](https://img.shields.io/npm/l/pattern-collector-anyjs-pull-lines.svg?style=flat-square&color=34d399)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/pattern-collector-anyjs-pull-lines-consumption.svg?style=flat-square&color=38bdf8)](https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-consumption)
+[![license](https://img.shields.io/npm/l/pattern-collector-anyjs-pull-lines-consumption.svg?style=flat-square&color=34d399)](LICENSE)
 
 🔗 **Quick Links:**
-*   📦 **NPM Registry**: [npmjs.com/package/pattern-collector-anyjs-pull-lines](https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines)
-*   💻 **GitHub Repo**: [github.com/keshavsoft/pattern-collector-anyjs-pull-lines](https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines)
-*   🌐 **Live Documentation**: [keshavsoft.github.io/pattern-collector-anyjs-pull-lines](https://keshavsoft.github.io/pattern-collector-anyjs-pull-lines/)
-
+*   📦 **NPM Registry**: [npmjs.com/package/pattern-collector-anyjs-pull-lines-consumption](https://www.npmjs.com/package/pattern-collector-anyjs-pull-lines-consumption)
+*   💻 **GitHub Repo**: [github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption](https://github.com/keshavsoft/pattern-collector-anyjs-pull-lines-consumption)
+*   🌐 **Live Documentation**: [keshavsoft.github.io/pattern-collector-anyjs-pull-lines-consumption](https://keshavsoft.github.io/pattern-collector-anyjs-pull-lines-consumption/)
 
 ---
 
 ## 📖 Overview
 
-`pattern-collector-anyjs-pull-lines` is a zero-dependency ES module that allows you to static-analyze JavaScript or ESM source code. It scans file contents to identify specific patterns (such as `import` statements or routing configurations) and extracts line details, line numbers, variable names, and directory paths.
+`pattern-collector-anyjs-pull-lines-consumption` is a modular ES module used as a sub-module of `pattern-collector-anyjs-pull-lines`. It scans file contents to identify specific patterns (such as routing consumption declarations) and extracts line details, line numbers, variable names, and directory paths.
 
-This library is particularly useful for building automated routing trees, generating bundle maps, or auditing source code patterns.
+This library is particularly useful for building automated routing trees or auditing source code consumption patterns.
 
 ---
 
 ## ✨ Features
 
-- **⚡ Zero Dependencies**: Light, fast, and secure.
 - **🏷️ Line Tracking**: Identifies exactly which line number each pattern appears on.
 - **🧩 Custom Extraction Regex**: Extracts variables, directories, and paths using flexible capturing groups in your regular expressions.
 - **📦 ESM Native**: Built for modern ES module environments.
@@ -32,77 +30,47 @@ This library is particularly useful for building automated routing trees, genera
 
 ## 🔗 Dependency Chain
 
-*   [`pattern-collector-anyjs-extract`](https://www.npmjs.com/package/pattern-collector-anyjs-extract) - listed in [`package.json`](package.json) as `^1.2.2`.
+*   [`pattern-collector-anyjs-extract`](https://www.npmjs.com/package/pattern-collector-anyjs-extract) - listed in [`package.json`](package.json) as `^1.4.6`.
 
 ---
 
 ## 🚀 Installation
 
 ```bash
-npm install pattern-collector-anyjs-pull-lines
+npm install pattern-collector-anyjs-pull-lines-consumption
 ```
 
 ---
 
 ## 💻 Usage Example
 
-Here is a quick example showing how to extract import and route usage patterns:
+Here is a quick example showing how to extract route usage patterns:
 
 ```javascript
-import pullLines from 'pattern-collector-anyjs-pull-lines';
+import pullLinesConsumption from 'pattern-collector-anyjs-pull-lines-consumption';
 
 const code = `
-import express from 'express';
-import { router as routerFromv1 } from "./v1/routes.js";
-import { router as routerFromv2 } from "./v2/routes.js";
-
 const router = express.Router();
 router.use("/v1", routerFromv1);
 `;
 
-const result = pullLines({
+const result = pullLinesConsumption({
   fileContent: code,
-  importRegex: {
-    // Captures the router variable alias and the module folder name
-    parseRegex: /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/,
-    // Search regex to identify import lines
-    searchString: /^[ \t]*import\b.*from\s+['"]\.[^'"]*['"];/gm
-  },
-  consumptionRegex: {
-    // Captures routing paths and the associated router variable names
-    parseRegex: /router\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/,
-    // Search regex to identify route usage lines
-    searchString: /^[ \t]*router\.use\b.*?;/gm
-  }
+  parseRegex: /router\.use\s*\(\s*['"`]\/?([^'"`]+)['"`]\s*,\s*(\w+)/,
+  searchRegex: /^[ \t]*router\.use\b.*?;/gm
 });
 
 console.log(result);
 /*
 Output:
-{
-  importLines: [
-    {
-      variable: 'routerFromv1',
-      folderName: 'v1',
-      line: 'import { router as routerFromv1 } from "./v1/routes.js";',
-      lineNumber: 3
-    },
-    {
-      variable: 'routerFromv2',
-      folderName: 'v2',
-      line: 'import { router as routerFromv2 } from "./v2/routes.js";',
-      lineNumber: 4
-    }
-  ],
-  useLines: [
-    {
-      variable: 'v1',
-      folderName: 'routerFromv1',
-      line: 'router.use("/v1", routerFromv1);',
-      lineNumber: 7
-    }
-  ]
-}
+[
+  {
+    variable: 'v1',
+    folderName: 'routerFromv1',
+    line: 'router.use("/v1", routerFromv1);',
+    lineNumber: 3
+  }
+]
 */
 ```
 
@@ -119,22 +87,16 @@ The default export is a function that parses the provided content and returns ma
 An options object containing:
 
 * **`fileContent`** `(string)`: The raw javascript source code string to analyze.
-* **`importRegex`** `(object)`: Config for parsing import statements:
-  - `searchRegex` / `searchString` `(RegExp)`: Regular expression with `g` flag to search for import statements in the code.
-  - `parseRegex` `(RegExp)`: Regular expression with capture groups to extract specific variables (`variable`) and folder names (`folderName`).
-* **`consumptionRegex`** `(object)`: Config for parsing route consumption statements:
-  - `searchRegex` / `searchString` `(RegExp)`: Regular expression with `g` flag to search for route usage patterns.
-  - `parseRegex` `(RegExp)`: Regular expression with capture groups to extract paths and variables.
+* **`searchRegex`** `(RegExp)`: Regular expression with `g` flag to search for route usage patterns.
+* **`parseRegex`** `(RegExp)`: Regular expression with capture groups to extract paths and variables.
 * **`showLog`** `(boolean)` *(optional)*: When set to `true`, outputs intermediate matching arrays to the console.
 * **`showLogStep1`** `(boolean)` *(optional)*: When set to `true`, outputs step-by-step extraction details.
 
 #### Returns
 
-* **`Object`**:
-  - `importLines` `(Array<Object>)`: Extracted import matching objects.
-  - `useLines` `(Array<Object>)`: Extracted usage matching objects.
+* **`Array<Object>`**: An array of route consumption matching objects.
 
-Each item in the lists has the following shape:
+Each item in the list has the following shape:
 ```typescript
 {
   variable: string;    // Captured variable name from parseRegex
@@ -149,3 +111,4 @@ Each item in the lists has the following shape:
 ## ⚖️ License
 
 MIT License. Designed with ❤️ by [KeshavSoft](https://github.com/keshavsoft).
+
